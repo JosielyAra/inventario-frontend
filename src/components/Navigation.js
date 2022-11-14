@@ -85,7 +85,7 @@ export function Navigation({color}) {
                   className="px-3 py-2 flex items-center text-sm font-semibold text-white hover:opacity-75"
                   to="/clients"
                 >
-                  <span className="ml-2">Clientes</span>
+                  <span className="ml-2">Clientes / Proveedores</span>
                 </Link>
               </li>
               <li className="nav-item">

@@ -12,13 +12,13 @@ export const Clients = () => {
 
 
   async function getClients(id) {
-    const res = await axios.post('http://localhost:4000/api/client/get', { id })
+    const res = await axios.post('https://inventario-backend-production.up.railway.app/api/client/get', { id })
     setClients(res.data)
   }
 
   const deleteClient = async (id) => {
     try {
-      await axios.delete('http://localhost:4000/api/client/' + id)
+      await axios.delete('https://inventario-backend-production.up.railway.app/api/client/' + id)
       setClients(clients.filter(client => client._id !== id))
     } catch (error) {
       toast(
@@ -88,10 +88,10 @@ export const Clients = () => {
     return (
       <div className='text-white text-center'>
         <div>
-      <h1 className="text-white text-center text-5xl mb-2">Clientes</h1>
+      <h1 className="text-white text-center text-5xl mb-2">Clientes / Proveedores</h1>
       </div>
         <div className='mt-64'>
-        <p className='mb-3'>No existen clientes.</p>
+        <p className='mb-3'>No existen clientes / proveedores.</p>
         <Link
           to='/clients/create'
           className=' hover:bg-gray-700 text-white font-bold p-3 rounded'
@@ -106,7 +106,7 @@ export const Clients = () => {
 
       <div className='p-6'>
          <div>
-      <h1 className="text-white text-center text-5xl mb-2">Clientes</h1>
+      <h1 className="text-white text-center text-5xl mb-2">Clientes / Proveedores</h1>
       </div>
         <Link
           to='/clients/create'

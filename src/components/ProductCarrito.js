@@ -25,7 +25,7 @@ export function ProductCarrito() {
 
 
   const getMonedaUsuario = async (id) => {
-    const getMonedaUser = await axios.post('http://localhost:4000/api/monedas/get/' + id)
+    const getMonedaUser = await axios.post('https://inventario-backend-production.up.railway.app/api/monedas/get/' + id)
     setmon(getMonedaUser.data)
   }
   async function totaler() {
@@ -62,7 +62,7 @@ export function ProductCarrito() {
   async function getCarrito(userId) {
     try {
 
-      const res = await axios.post("http://localhost:4000/api/carrito/get", {
+      const res = await axios.post("https://inventario-backend-production.up.railway.app/api/carrito/get", {
         userId,
       });
       // console.log(res.data)
@@ -91,7 +91,7 @@ export function ProductCarrito() {
 
 
   const getClient = async (id) => {
-    const res = await axios.post('http://localhost:4000/api/client/get', { id })
+    const res = await axios.post('https://inventario-backend-production.up.railway.app/api/client/get', { id })
     setAllClients(res.data)
   }
 
@@ -113,7 +113,7 @@ export function ProductCarrito() {
 
   const deleteCarrito = async (_id) => {
     try {
-      await axios.post("http://localhost:4000/api/carrito/delete", {
+      await axios.post("https://inventario-backend-production.up.railway.app/api/carrito/delete", {
         _id,
       });
       setcarrito(carrito.filter(carrito => carrito._id !== _id))
@@ -179,7 +179,7 @@ export function ProductCarrito() {
 
   const melaniPlus = async (_id) => {
     try {
-      const res = await axios.post("http://localhost:4000/api/carrito/plus", { _id });
+      const res = await axios.post("https://inventario-backend-production.up.railway.app/api/carrito/plus", { _id });
 
       setcarrito(carrito.map(carrit => carrit._id === _id ? res.data : carrit))
 
@@ -241,7 +241,7 @@ export function ProductCarrito() {
 
   }
   const melaniMinus = async (_id) => {
-    const res = await axios.post("http://localhost:4000/api/carrito/minus", { _id });
+    const res = await axios.post("https://inventario-backend-production.up.railway.app/api/carrito/minus", { _id });
 
     setcarrito(carrito.map(carrito => carrito._id === _id ? res.data : carrito))
     getCarrito(user.uid)
@@ -251,7 +251,7 @@ export function ProductCarrito() {
   const createVenta = async () => {
 
     try {
-      await axios.post("http://localhost:4000/api/factura", {
+      await axios.post("https://inventario-backend-production.up.railway.app/api/factura", {
         userId: user.uid, products: carrito, total: totals, cliente: client, typeFac: typeFac
       });
       await getProducts(user)
@@ -302,7 +302,7 @@ export function ProductCarrito() {
     return (
       <div className="p-6">
         <div>
-          <h1 className="text-white text-center text-5xl mb-2">Carrito Venta</h1>
+          <h1 className="text-white text-center text-5xl mb-2">Carrito</h1>
         </div>
         <div className="flex sm:block">
 
@@ -311,10 +311,10 @@ export function ProductCarrito() {
               onClick={() => createVenta()}
               className="focus:outline-none text-white bg-green-700 hover:bg-green-800 font-small rounded-sm text-sm px-5 py-2.5 dark:bg-green-600 mr-3 dark:hover:bg-green-700 dark:focus:ring-green-800"
             >
-              Venta
+              Enviar
             </button>
             <select className="rounded bg-zinc-300 mr-3" name="client" onChange={(e) => setClient(e.target.value)} form="carform">
-              <option value="" selected>Selecciona el cliente</option>
+              <option value="" selected>Selecciona el {typeFac==="Venta" ? "cliente" : "proveedor"}</option>
               {allClients.map((client) => <option key={client._id} value={client.name}>{client.name}</option>)}
             </select>
             <select className="rounded bg-zinc-300" name="client" onChange={(e) => setTypeFac(e.target.value)} form="carform">

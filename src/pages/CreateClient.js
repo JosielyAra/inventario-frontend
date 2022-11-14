@@ -25,7 +25,7 @@ export function CreateClient() {
   const getClient = async () => {
     if (params.id) {
       const res = await axios.get(
-        "http://localhost:4000/api/client/" + params.id
+        "https://inventario-backend-production.up.railway.app/api/client/" + params.id
       );
 
       setClient(res.data);
@@ -34,7 +34,7 @@ export function CreateClient() {
 
   const createClient = async (values) => {
     try {
-      await axios.post("http://localhost:4000/api/client", values);
+      await axios.post("https://inventario-backend-production.up.railway.app/api/client", values);
       getClient();
     } catch (error) {
       toast(
@@ -56,8 +56,7 @@ export function CreateClient() {
 
   const updateClient = async (values) => {
     try {
-      const res = await axios.put("http://localhost:4000/api/client/" + params.id, values);
-      navigate('/carrito')
+      const res = await axios.put("https://inventario-backend-production.up.railway.app/api/client/" + params.id, values);
     } catch (error) {
       toast(
         (t) => {
@@ -92,10 +91,10 @@ export function CreateClient() {
           initialValues={client}
           onSubmit={async (values, actions) => {
             if (params.id) {
-              updateClient(values);
+              await updateClient(values);
               navigate("/clients");
             } else {
-              createClient(values);
+              await createClient(values);
               navigate("/clients");
             }
           }}

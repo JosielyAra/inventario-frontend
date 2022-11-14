@@ -17,13 +17,13 @@ const navigate = useNavigate()
 
 
   const getMonedaUsuario = async (id)=>{
-    const getMonedaUser = await axios.post('http://localhost:4000/api/monedas/get/'+id)
+    const getMonedaUser = await axios.post('https://inventario-backend-production.up.railway.app/api/monedas/get/'+id)
     setmon(getMonedaUser.data)
   }
 
   const deleteFactura = async (_id) => {
     try {
-     await axios.delete('http://localhost:4000/api/factura/'+ _id)
+     await axios.delete('https://inventario-backend-production.up.railway.app/api/factura/'+ _id)
      getFactura(user.uid)
     } catch (error) {
         toast(
@@ -85,7 +85,7 @@ const navigate = useNavigate()
 
   async function getFactura(userId) {
     try {
-      const resp = await axios.post('http://localhost:4000/api/factura/get', { id: user.uid })
+      const resp = await axios.post('https://inventario-backend-production.up.railway.app/api/factura/get', { id: user.uid })
       setfactura(resp.data)
     } catch (error) {
       toast(

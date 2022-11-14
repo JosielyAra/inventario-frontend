@@ -18,7 +18,7 @@ export function ProductsCard({ product }) {
 
 
   const getMonedaUsuario = async (id)=>{
-    const getMonedaUser = await axios.post('http://localhost:4000/api/monedas/get/'+id)
+    const getMonedaUser = await axios.post('https://inventario-backend-production.up.railway.app/api/monedas/get/'+id)
     setmon(getMonedaUser.data)
   }
 
@@ -29,7 +29,7 @@ useEffect(() => {
 
   const addCarrito = async (userId, product) => {
     try {
-      const res = await axios.post('http://localhost:4000/api/carrito', {userId, product})
+      const res = await axios.post('https://inventario-backend-production.up.railway.app/api/carrito', {userId, product})
     if(res.status === 200){
       toast(
         (t) => {

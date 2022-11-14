@@ -12,16 +12,16 @@ export const Monedas = () => {
   });
 
   const getMonedas = async () => {
-    const monedas = await axios.get('http://localhost:4000/api/monedas')
+    const monedas = await axios.get('https://inventario-backend-production.up.railway.app/api/monedas')
     setMonedas(monedas.data)
   }
 
   const createMonedaUser = async (moneda) => {
     if (moneda.length > 1) {
       setmonedaUsuario('')
-      await axios.post('http://localhost:4000/api/monedas/create', { moneda, userId: user.uid })
+      await axios.post('https://inventario-backend-production.up.railway.app/api/monedas/create', { moneda, userId: user.uid })
     } else {
-      const createMoneda = await axios.post('http://localhost:4000/api/monedas/create', { moneda, userId: user.uid })
+      const createMoneda = await axios.post('https://inventario-backend-production.up.railway.app/api/monedas/create', { moneda, userId: user.uid })
       setmonedaUsuario(createMoneda.data)
     }
 
@@ -30,14 +30,14 @@ export const Monedas = () => {
 
   const getMonedaUsuario = async (id) => {
 
-    const getMonedaUser = await axios.post('http://localhost:4000/api/monedas/get/' + id)
+    const getMonedaUser = await axios.post('https://inventario-backend-production.up.railway.app/api/monedas/get/' + id)
     setmonedaUsuario(getMonedaUser.data)
   }
 
 
   const getOneMoneda = async (e) => {
 
-    const oneMoneda = await axios.get('http://localhost:4000/api/monedas/' + e)
+    const oneMoneda = await axios.get('https://inventario-backend-production.up.railway.app/api/monedas/' + e)
     createMonedaUser(oneMoneda.data)
 
   }
